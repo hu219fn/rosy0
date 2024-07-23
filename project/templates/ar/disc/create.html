@@ -1,0 +1,29 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY - Create Discount{% endblock title %}
+
+{% block body %}
+
+{% if request.user.username == 'rosy' %}
+<form method='post' enctype="multipart/form-data">
+    <h1>اضافة المنتج</h1>
+    {% csrf_token %}
+    <label for="id_description">الوصف:</label>
+    <textarea name="description" cols="40" rows="10" required="" id="id_description"></textarea>
+    <label for="id_end_date">تاريخ الانهاء:</label>  
+    <input type="text" name="end_date" maxlength="200" required="" id="id_end_date">
+    <label for="id_active">حالة التخفيض:</label>
+    <select name="active" required="" id="id_active">
+        <option value="" selected="">---------</option>
+        <option value="تعمل">تعمل</option>
+        <option value="لا تعمل">لا تعمل</option>
+    </select>
+    <input type='submit' value='حفظ'>
+</form>
+{% else %}
+<script>
+    location.href = '/ar/'
+</script>
+{% endif %}
+
+{% endblock body %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}ROSY - Girls' Baby Clothes{% endblock title %}
+
+{% block body %}
+<header id='header'>
+    <h1>👧🏻 Girls' Baby Clothes</h1>
+    <button><a href="{% url 'index' %}">All Products</a></button>
+</header>
+<div class='content'>
+    {% for item in items %}
+    <section>
+        <a href='/{{item.id}}/'>
+            <img src="{{item.photo.url}}" />
+            <h3>{{item.title}}</h3>
+            <p>{{item.caption}}</p>
+            <h4>{{item.price}} IRQ</h4>
+        </a>
+        {% if item.sell %}
+        <strong>{{item.sell}}</strong>
+        {% endif %}
+    </section>
+    {% endfor %}
+</div>
+{% endblock body %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}ROSY - Discounts{% endblock title %}
+
+{% block body %}
+<div class='sale'>
+    <header>
+        <h1>Discounts</h1>
+        {% if request.user.username == 'rosy' %}
+        <button><a href="/discount_create/">Add Discount</a></button>
+        {% endif %}
+    </header>
+    <div class='discounts'>
+        {% for discount in discounts %}
+        <div class='discount'>
+            <div>
+                <h3>{{discount.date}} - ({% if discount.active == 'تعمل' %}active{% else %}inactive{% endif %})</h3>
+                <p>{{discount.description}}</p>
+                <h4>End Date:<b> {{discount.end_date}}</b></h4>
+            </div>
+            <div>
+                <button class='btnDel copy sale00' value='{{discount.description}}'><span style='font-size:40px' class="material-symbols-rounded copy">content_copy</span></button>
+                {% if request.user.username == 'rosy' %}
+                <button class='btnDel sale00' style='margin:0 5px;'><a href='/discount_update/{{discount.id}}/' style='color:#ceed67'><span class="material-symbols-rounded">Update</span></a></button>
+                <button class='btnDel sale00'><a href='/discount_delete/{{discount.id}}/'><span class="material-symbols-rounded">delete</span></a></button>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock body %}

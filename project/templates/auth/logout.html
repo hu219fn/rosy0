@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}ROSY - Logout Page{% endblock title %}
+
+{% block body %}
+<div>
+    <h1 class='h1'>You have been Logout</h1>
+    <p class='p'>Thank you for using ROSY</p>
+    <a class='a' href="{% url 'login' %}">Login</a>
+</div>
+{% endblock body %}

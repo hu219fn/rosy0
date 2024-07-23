@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block title %}ROSY{% endblock title %}
+
+{% block body %}
+<div class='ad' id='ad1'><button id='btn1'>x</button><a href='/discounts/'>Go to this page to see the discounts!!!</a></></div>
+<header>
+    <h1>ROSY Store</h1>
+    <form method='get' action='{% url "search_products" %}'>
+        <input type="text" name="search_products" placeholder="Search for Products...">
+        <button type="submit"><span class="material-symbols-outlined">search</span></button>
+    </form>
+</header>
+<div class='content'>
+    {% for item in items %}
+    <section>
+        <a href='/{{item.id}}/'>
+            <img src="{{item.photo.url}}" />
+            <h3>{{item.title}}</h3>
+            <p>{{item.caption}}</p>
+            <h4>{{item.price|intcomma}} IRQ</h4>
+        </a>
+        {% if item.sell %}
+        <strong>{{item.sell}}</strong>
+        {% endif %}
+    </section>
+    {% endfor %}
+</div>
+{% endblock body %}

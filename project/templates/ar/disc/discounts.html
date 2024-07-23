@@ -1,0 +1,33 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY - Discounts{% endblock title %}
+
+{% block body %}
+<div class='sale' style='direction:rtl'>
+    <header>
+        <h1 style='font-family: Tahoma, Verdana, sans-serif;'>تخفيضات</h1>
+        {% if request.user.username == 'rosy' %}
+        <button><a href="/ar/discount_create/">اضافة تخفيض</a></button>
+        {% endif %}
+    </header>
+    <div class='discounts'>
+        {% for discount in discounts %}
+        <div class='discount'>
+            <div>
+                <h3>{{discount.date}} - ({{discount.active}})</h3>
+                <p>{{discount.description}}</p>
+                <h4>تاريخ الانهاء:<b> {{discount.end_date}}</b></h4>
+            </div>
+            <div>
+                <button class='btnDel copy sale00' value='{{discount.description}}'><span style='font-size:40px' class="material-symbols-rounded copy">content_copy</span></button>
+                {% if request.user.username == 'rosy' %}
+                <button class='btnDel sale00' style='margin:0 5px;'><a href='/ar/discount_update/{{discount.id}}/' style='color:#ceed67'><span class="material-symbols-rounded">Update</span></a></button>
+                <button class='btnDel sale00'><a href='/ar/discount_delete/{{discount.id}}/'><span class="material-symbols-rounded">delete</span></a></button>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock body %}

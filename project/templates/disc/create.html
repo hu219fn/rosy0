@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}ROSY - Create Discount{% endblock title %}
+
+{% block body %}
+
+{% if request.user.username == 'rosy' %}
+<form method='post' enctype="multipart/form-data">
+    <h1>Add Product</h1>
+    {% csrf_token %}
+    {{form}}
+    <input type='submit' value='Save'>
+</form>
+{% else %}
+<script>
+    location.href = '/'
+</script>
+{% endif %}
+
+{% endblock body %}

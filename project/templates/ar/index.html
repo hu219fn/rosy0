@@ -1,0 +1,30 @@
+{% extends "ar/base.html" %}
+
+{% load humanize %}
+{% block title %}ROSY{% endblock title %}
+
+{% block body %}
+<div class='ad' id='ad2'><button id='btn2'>x</button><a href='/ar/discounts/'>!!!اذهب الى هذه الصفحة لترى الخصومات</a></></div>
+<header>
+    <h1>ROSY Store</h1>
+    <form method='get' action='/ar/search'>
+        <input type="text" name="search_products" placeholder="...ابحث عن المنتجات">
+        <button type="submit"><span class="material-symbols-outlined">search</span></button>
+    </form>
+</header>
+<div class='content'>
+    {% for item in items %}
+    <section>
+        <a href='/ar/{{item.id}}/'>
+            <img src="{{item.photo.url}}" />
+            <h3>{{item.title}}</h3>
+            <p>{{item.caption}}</p>
+            <h4>{{item.price|intcomma}} IRQ</h4>
+        </a>
+        {% if item.sell %}
+        <strong>{{item.sell}}</strong>
+        {% endif %}
+    </section>
+    {% endfor %}
+</div>
+{% endblock body %}

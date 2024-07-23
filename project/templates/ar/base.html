@@ -1,0 +1,504 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name="description" content="Welcome to ROSY!! We offer you all kinds of products (clothes, care, etc..), We have many discounts and offers, We thank you for choosing our store(:">
+        <meta name='keywords' content='ROSY Store'>
+        <meta name='auther' content='@hu226fn فاطمة همام'>
+        <title>{% block title %}{% endblock title %}</title>
+        <link rel="stylesheet" href="{% static "css/style.css" %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" type="image/x-icon" href="{% static 'images/rosy.jpg' %}" >
+    </head>
+    <body>
+        <nav>
+            <div class='nav'>
+                <ul>
+                    <div class='div0'>
+                        <li>
+                            <a href=''>
+                                <img src="{% static 'images/rosy.jpg' %}">
+                            </a>
+                        </li>
+                        <li>
+                            <a href=''>
+                                <h3>ROSY</h3>
+                            </a>    
+                        </li>
+                    </div>
+                    <div>
+                        <li>
+                            <a href="/ar/">الصفحة الرئيسية</a>
+                        </li>
+                        <li>
+                            <button id='btns1'>الاقسام</button>
+                            <ul id='ul-btn1'>
+                                <li><a href='/ar/makeup/'>مكياج 💄</a></li><hr>
+                                <li><a href='/ar/care-products/'>منتجات عناية 💅🏻</a></li><hr>
+                                <li><a href='/ar/perfumes/'>عطور 🌬️</a></li><hr>
+                                <li><a href='/ar/presents/'>هدايا 🎁</a></li><hr>
+                                <li><a href='/ar/men-clothes/'>ملابس رجالية 👨🏻</a></li><hr>
+                                <li><a href='/ar/women-clothes/'>ملابس نسائية 👩🏻</a></li><hr>
+                                <li><a href='/ar/girls-clothes/'>ملابس بناتية 👧🏻</a></li><hr>
+                                <li><a href='/ar/boys-clothes/'>ملابس ولادية 👦🏻</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/ar/discounts/">تخفيضات وخصومات</a>
+                        </li>
+                        {% if request.user.username == 'rosy' %}
+                        <li>
+                            <a href="/ar/management/">الادارة</a>
+                        </li>
+                        {% endif %}
+                        {% if request.user.is_authenticated %}
+                        <li>
+                            <a href="/ar/register/logout/">تسجيل الخروج</a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a href="/ar/register/login/">تسجيل الدخول</a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <button><a href="/ar/orders/" style='margin:0'><span class="material-symbols-rounded">shopping_cart</span></a></button>
+                        </li>
+                        <li>
+                            <button onclick='change_language1()'><span class="material-symbols-outlined">language</span></button>
+                        </li>
+                    </div>
+                </ul>
+                <button id='menu2'><span class="material-symbols-outlined">menu</span></button>
+                <ul id='ul2'>
+                    <li>
+                        <a href="/ar/">الصفحة الرئيسية</a>
+                    </li><hr>
+                    <li>
+                        <button id='btns3'>الاقسام</button>
+                        <ul id='ul-btn3'>
+                            <li><a href='/ar/makeup/'>مكياج 💄</a></li>
+                            <li><a href='/ar/care-products/'>منتجات عناية 💅🏻</a></li>
+                            <li><a href='/ar/perfumes/'>عطور 🌬️</a></li>
+                            <li><a href='/ar/presents/'>هدايا 🎁</a></li>
+                            <li><a href='/ar/men-clothes/'>ملابس رجالية 👨🏻</a></li>
+                            <li><a href='/ar/women-clothes/'>ملابس نسائية 👩🏻</a></li>
+                            <li><a href='/ar/girls-clothes/'>ملابس بناتية 👧🏻</a></li>
+                            <li><a href='/ar/boys-clothes/'>ملابس ولادية 👦🏻</a></li>
+                        </ul>
+                    </li><hr>
+                    <li>
+                        <a href="/ar/discounts/">تخفيضات وخصومات</a>
+                    </li><hr>
+                    <li>
+                        <a href="/ar/orders/">السلة</a>
+                    </li><hr>
+                    {% if request.user.username == 'rosy' %}
+                    <li>
+                        <a href="/ar/management/">الادارة</a>
+                    </li><hr>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="/ar/register/logout/">تسجيل الخروج</a>
+                    </li><hr>
+                    {% else %}
+                    <li>
+                        <a href="/ar/register/login/">تسجيل الدخول</a>
+                    </li><hr>
+                    {% endif %}
+                    <li>
+                        <button onclick='change_language1()'>تغيير اللغة</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main dir='rtl'>{% block body %}{% endblock body %}</main>
+        <footer>
+            <div class='footer1'>
+                <img src="{% static 'images/rosy.jpg' %}">
+                <h3>ROSY</h3>
+                <p>🧡 ROSY مرحبا بكم في 🧡<br>👌نقدم لكم كافة أنواع المنتجات (ملابس، عناية، الخ..) 👌<br>💯 لدينا العديد من الخصومات والعروض 💯<br>❗️ نشكركم على اختيار متجرنا ❗️</p>
+            </div>
+            <div class='footer2'>
+                <h3>☎️ اتصل بنا ☎️</h3>
+                <ul>
+                    <strong id='p2' style='margin-left:-55px'>!تم النسخ</strong>
+                    <li><b>📞</b><button id='copy2'>  </button><b>📞</b></li>
+                    <li><b><img src="{% static 'images/instagram.png' %}"></b><a href='https://www.instagram.com/victo.riastore2/' target='_blanck'> @ victo.riastore2 </a><b><img src="{% static 'images/instagram.png' %}"></b></li>
+                    <li><b><img src="{% static 'images/instagram.png' %}"></b><a href='https://www.instagram.com/rosy.store4/' target='_blanck'> @ rosy.store4 </a><b><img src="{% static 'images/instagram.png' %}"></b></li>
+                </ul>
+            </div>
+        </footer>
+        <script>
+            function change_language1() {
+                location.href = '/'
+            }
+            ///////
+            try {
+                let menu1 = document.getElementById('menu1');
+                let ul1 = document.getElementById('ul1');
+                menu1.onclick = ()=>{
+                    if (ul1.style.display == 'block'){
+                        ul1.style.display = 'none';
+                    }else{
+                        ul1.style.display = 'block';
+                    }
+                }
+            }catch(err){
+                console.log('')
+            }
+            try{
+                let menu2 = document.getElementById('menu2');
+                let ul2 = document.getElementById('ul2');
+                menu2.onclick = ()=>{
+                    if (ul2.style.display == 'block'){
+                        ul2.style.display = 'none';
+                    }else{
+                        ul2.style.display = 'block';
+                    }
+                } 
+            }catch(err){
+                console.log('')
+            }
+            /////
+            try {
+                let copy1 = document.getElementById('copy1');
+                let p1 = document.getElementById('p1');
+                copy1.onclick = ()=>{
+                    let text = copy1.innerHTML;
+                    navigator.clipboard.writeText(text);
+                        p1.style.display = 'inline';
+                    setTimeout(()=>{
+                        p1.style.display = 'none';
+                    }, 1000)
+                }
+            }catch(err){
+                console.log('')
+            }
+            try {
+                let copy2 = document.getElementById('copy2');
+                let p2 = document.getElementById('p2');
+                copy2.onclick = ()=>{
+                    let text = copy1.innerHTML;
+                    navigator.clipboard.writeText(text);
+                        p2.style.display = 'inline';
+                    setTimeout(()=>{
+                        p2.style.display = 'none';
+                    }, 1000)
+                }
+            }catch(err){
+                console.log('')
+            }
+            ////
+            try {
+                let btns = document.getElementById('btns');
+                let ul_btn = document.getElementById('ul-btn');
+                btns.onclick = ()=>{
+                    if (ul_btn.style.display == 'block'){
+                        ul_btn.style.display = 'none';
+                    }else{
+                        ul_btn.style.display = 'block';
+                    }
+                }
+            }catch(err){
+                console.log('')
+            }
+            try {
+                let btns1 = document.getElementById('btns1');
+                let ul_btn1 = document.getElementById('ul-btn1');
+                btns1.onclick = ()=>{
+                    if (ul_btn1.style.display == 'block'){
+                        ul_btn1.style.display = 'none';
+                    }else{
+                        ul_btn1.style.display = 'block';
+                    }
+                }
+            }catch(err){
+                console.log('')
+            }
+            try {
+                let btns2 = document.getElementById('btns2');
+                let ul_btn2 = document.getElementById('ul-btn2');
+                btns2.onclick = ()=>{
+                    if (ul_btn2.style.display == 'block'){
+                        ul_btn2.style.display = 'none';
+                    }else{
+                        ul_btn2.style.display = 'block';
+                    }
+                }
+            }catch(err){
+                console.log('')
+            }
+            try {
+                let btns3 = document.getElementById('btns3');
+                let ul_btn3 = document.getElementById('ul-btn3');
+                btns3.onclick = ()=>{
+                    if (ul_btn3.style.display == 'block'){
+                        ul_btn3.style.display = 'none';
+                    }else{
+                        ul_btn3.style.display = 'block';
+                    }
+                }
+            }catch(err){
+                console.log('')
+            }
+            
+                //////
+            try {
+                function plus(){
+                    let num = document.getElementById('count');
+                    var number = +num.value;
+                    num.value = number + 1;
+                }
+                function minus(){
+                    let num = document.getElementById('count');
+                    var number = +num.value;
+                    if(number > 1) {
+                        num.value = number - 1;
+                    }
+                }
+            }catch {
+                console.log('');
+            }
+            try {
+                function plus(){
+                    let num1 = document.getElementById('count1');
+                    var number = +num1.value;
+                    num1.value = number + 1;
+                }
+                function minus(){
+                    let num1 = document.getElementById('count1');
+                    var number = +num1.value;
+                    if(number > 1) {
+                        num1.value = number - 1;
+                    }
+                }
+            }catch {
+                console.log('');
+            }
+            
+            /////
+            
+            try {
+                let categories = document.getElementById('categories');
+                let ul_categories = document.getElementById('ul-categories');
+                ul_categories.style.display = 'none';
+                categories.onclick = ()=>{
+                    if (ul_categories.style.display == 'block'){
+                        ul_categories.style.display = 'none';
+                    }else{
+                        ul_categories.style.display = 'block';
+                    }
+                }
+            }catch(err){
+                console.log('');
+            }
+            try{
+                let categories1 = document.getElementById('categories1');
+                let ul_categories1 = document.getElementById('ul-categories1');
+                ul_categories1.style.display = 'none';
+                categories1.onclick = ()=>{
+                    if (ul_categories1.style.display == 'block'){
+                        ul_categories1.style.display = 'none';
+                    }else{
+                        ul_categories1.style.display = 'block';
+                    }
+                }
+            }catch(err){
+                console.log('');
+            }
+            ////
+            try {
+                let productsBTN = document.getElementById('productsBTN');
+                let usersBTN = document.getElementById('usersBTN');
+                let products = document.getElementById('products');
+                let users = document.getElementById('users');
+            
+                products.style.display = 'block';
+                users.style.display = 'none';
+                productsBTN.style.borderBottom = '5px solid #edc967';
+            
+                productsBTN.onclick = ()=>{
+                    products.style.display = 'block';
+                    users.style.display = 'none';
+                    usersBTN.style.borderBottom = 'none';
+                    productsBTN.style.borderBottom = '5px solid #edc967';
+                }
+                usersBTN.onclick = ()=>{
+                    users.style.display = 'block';
+                    products.style.display = 'none';
+                    productsBTN.style.borderBottom = 'none';
+                    usersBTN.style.borderBottom = '5px solid #edc967';
+                }
+            }catch(err){
+                console.log('1');
+            }
+            try {
+                let productsBTN = document.getElementById('productsBTN1');
+                let usersBTN = document.getElementById('usersBTN1');
+                let products = document.getElementById('products1');
+                let users = document.getElementById('users1');
+            
+                products.style.display = 'block';
+                users.style.display = 'none';
+                productsBTN.style.borderBottom = '5px solid #edc967';
+            
+                productsBTN.onclick = ()=>{
+                    products.style.display = 'block';
+                    users.style.display = 'none';
+                    usersBTN.style.borderBottom = 'none';
+                    productsBTN.style.borderBottom = '5px solid #edc967';
+                }
+                usersBTN.onclick = ()=>{
+                    users.style.display = 'block';
+                    products.style.display = 'none';
+                    productsBTN.style.borderBottom = 'none';
+                    usersBTN.style.borderBottom = '5px solid #edc967';
+                }
+            }catch(err){
+                console.log('1');
+            }
+            try {
+                let productsBTN0 = document.getElementById('productsBTN0');
+                let usersBTN0 = document.getElementById('usersBTN0');
+                let products0 = document.getElementById('products0');
+                let users0 = document.getElementById('users0');
+            
+                products0.style.display = 'none';
+                users0.style.display = 'block';
+                usersBTN0.style.borderBottom = '5px solid #edc967';
+            
+                productsBTN0.onclick = ()=>{
+                    products0.style.display = 'block';
+                    users0.style.display = 'none';
+                    usersBTN0.style.borderBottom = 'none';
+                    productsBTN0.style.borderBottom = '5px solid #edc967';
+                }
+                usersBTN0.onclick = ()=>{
+                    users0.style.display = 'block';
+                    products0.style.display = 'none';
+                    productsBTN0.style.borderBottom = 'none';
+                    usersBTN0.style.borderBottom = '5px solid #edc967';
+                }
+            }catch(TypeError){
+                console.log('2');
+            }
+            try {
+                let productsBTN0 = document.getElementById('productsBTN01');
+                let usersBTN0 = document.getElementById('usersBTN01');
+                let products0 = document.getElementById('products01');
+                let users0 = document.getElementById('users01');
+            
+                products0.style.display = 'none';
+                users0.style.display = 'block';
+                usersBTN0.style.borderBottom = '5px solid #edc967';
+            
+                productsBTN0.onclick = ()=>{
+                    products0.style.display = 'block';
+                    users0.style.display = 'none';
+                    usersBTN0.style.borderBottom = 'none';
+                    productsBTN0.style.borderBottom = '5px solid #edc967';
+                }
+                usersBTN0.onclick = ()=>{
+                    users0.style.display = 'block';
+                    products0.style.display = 'none';
+                    productsBTN0.style.borderBottom = 'none';
+                    usersBTN0.style.borderBottom = '5px solid #edc967';
+                }
+            }catch(TypeError){
+                console.log('2');
+            }
+            try {
+                let time1 = [...document.getElementsByClassName('time1')];
+                let result = 0;
+                time1.forEach(order=>
+                    result += +order.innerHTML
+                )
+                document.getElementById('total').innerHTML = result + ' IRQ';
+            }catch {
+                console.log('');
+            }
+            try {
+                let time2 = [...document.getElementsByClassName('time2')];
+                let result1 = 0;
+                time2.forEach(order1=>
+                    result1 += +order1.innerHTML
+                )
+                document.getElementById('total1').innerHTML = result1 + ' IRQ';
+            }catch {
+                console.log('');
+            }//
+            try {
+                let time1 = [...document.getElementsByClassName('time1')];
+                let result = 0;
+                time1.forEach(order=>
+                    result += +order.innerHTML
+                )
+                document.getElementById('total').innerHTML = result + ' IRQ';
+            }catch {
+                console.log('');
+            }
+            try {
+                let time2 = [...document.getElementsByClassName('time2')];
+                let result1 = 0;
+                time2.forEach(order1=>
+                    result1 += +order1.innerHTML
+                )
+                document.getElementById('total1').innerHTML = result1 + ' IRQ';
+            }catch {
+                console.log('');
+            }
+            try {
+                let time3 = [...document.getElementsByClassName('time3')];
+                let result3 = 0;
+                time3.forEach(order3=>
+                    result3 += +order3.innerHTML
+                )
+                document.getElementById('total3').innerHTML = result3 + ' IRQ';
+            }catch {
+                console.log('');
+            }
+            try {
+                let time4 = [...document.getElementsByClassName('time4')];
+                let result4 = 0;
+                time4.forEach(order1=>
+                    result4 += +order1.innerHTML
+                )
+                document.getElementById('total4').innerHTML = result4 + ' IRQ';
+            }catch {
+                console.log('');
+            }
+            ///
+            try {
+                let copy = [...document.getElementsByClassName('copy')];
+                copy.forEach(btn=>{
+                    btn.onclick = ()=>{
+                        let text = btn.value;
+                        navigator.clipboard.writeText(text)
+                    }
+                })
+            }catch {
+                console.log('');
+            }
+            try {let ad2 = document.getElementById('ad2');
+                let btn2 = document.getElementById('btn2');
+                btn2.onclick = ()=>{
+                    ad2.style.display = 'none'
+                }
+            }catch {
+                console.log('');
+            }
+            try {
+                let ad1 = document.getElementById('ad1');
+                let btn1 = document.getElementById('btn1');
+                btn1.onclick = ()=>{
+                    ad1.style.display = 'none'
+                }
+            }catch{
+                console.log('');
+            }
+        </script>
+    </body>
+</html>

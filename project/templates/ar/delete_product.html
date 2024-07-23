@@ -1,0 +1,15 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY - Delete {{item.title}}{% endblock title %}
+
+{% block body %}
+
+<form method='POST' style='text-align:center;'>
+    {% csrf_token %}
+    <h1>"{{item.title}}" حذف</h1>
+    <p>هل أنت متأكد أنك تريد حذف هذا المنتج؟</p>
+    <button><a href='/ar/management/'>تراجع</a></button>
+    <input type='submit' value='حذف'>
+</form>
+
+{% endblock body %}

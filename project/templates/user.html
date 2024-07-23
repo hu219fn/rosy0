@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}ROSY - @{{user.username}}{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <header>
+        <div class='div'>
+            <button>
+                <a href="{% url 'management' %}"><span class="material-symbols-rounded">arrow_back_ios</span></a>
+            </button>
+            <h1>@ {{user.username}}</h1>
+        </div>
+    </header>
+    <div>
+        <div>
+            <h1 style='margin:10px 0'>𝑹𝑶𝑺𝒀 𝑺𝑻𝑶𝑹𝑬</h1>
+            {% if items1.count > 0 %}
+            {% for item in items1 %}
+            <section>
+                <a href='/{{item.id}}/'>
+                    <div>
+                        <img src='{{item.photo.url}}'>
+                    </div>
+                    <div>
+                        <h1>{{item.title}} - ({{item.category}})</h1>
+                        <p>{{item.date}}</p>
+                    </div>
+                </a>
+            </section>
+            {% endfor %}
+            {% else %}
+            <h1 style='margin:10px 0;'>No Orders</h1>
+            {% endif %}
+            <hr style='border:1px solid #333;border-radius:5px'>
+            <h1 style='margin:10px 0'>𝑽𝑰𝑪𝑻𝑶𝑹𝑰𝑨 𝑺𝑻𝑶𝑹𝑬</h1>
+            {% if items2.count > 0 %}
+            {% for item in items2 %}
+            <section>
+                <a href='/{{item.id}}/'>
+                    <div>
+                        <img src='{{item.photo.url}}'>
+                    </div>
+                    <div>
+                        <h1>{{item.title}} - ({{item.category}})</h1>
+                        <p>{{item.date}}</p>
+                    </div>
+                </a>
+            </section>
+            {% endfor %}
+            {% else %}
+            <h1 style='margin:10px 0;'>No Orders</h1>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

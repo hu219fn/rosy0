@@ -1,0 +1,25 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY - Care Products{% endblock title %}
+
+{% block body %}
+<header id='header'>
+    <h1>💅🏻 منتجات عناية</h1>
+    <button><a href="/ar/">كل المنتجات</a></button>
+</header>
+<div class='content'>
+    {% for item in items %}
+    <section>
+        <a href='/{{item.id}}/'>
+            <img src="{{item.photo.url}}" />
+            <h3>{{item.title}}</h3>
+            <p>{{item.caption}}</p>
+            <h4>{{item.price}} IRQ</h4>
+        </a>
+        {% if item.sell %}
+        <strong>{{item.sell}}</strong>
+        {% endif %}
+    </section>
+    {% endfor %}
+</div>
+{% endblock body %}

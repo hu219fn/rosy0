@@ -1,0 +1,36 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY - Register{% endblock title %}
+
+{% block body %}
+
+<div style='direction:rtl'>
+    <form method='post'>
+        <h1>انشاء الحساب</h1>
+        {% csrf_token %}
+        <label for="id_username">اسم المستخدم:</label>
+        <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username"> 
+        <br>
+        <span class="helptext">مطلوب. 150 حرفًا أو أقل. الحروف والأرقام و@/./+/-/_ فقط.</span>
+        <label for="id_email">الايميل:</label>
+        <input type="email" name="email" maxlength="254" id="id_email">
+        <label for="id_password1">كلمة المرور:</label>
+        <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+        <br>
+        <span class="helptext">
+            <ul>
+                <li>لا يمكن أن تكون كلمة المرور الخاصة بك مشابهة جدًا لمعلوماتك الشخصية الأخرى.</li>
+                <li>يجب أن تحتوي كلمة المرور الخاصة بك على 8 أحرف على الأقل.</li>
+                <li>لا يمكن أن تكون كلمة المرور الخاصة بك كلمة مرور شائعة الاستخدام.</li>
+                <li>لا يمكن أن تكون كلمة المرور الخاصة بك رقمية بالكامل.</li>
+            </ul>
+        </span>
+        <label for="id_password2">تاكيد كلمة المرور:</label>
+        <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+        <br>
+        <span class="helptext">أدخل نفس كلمة المرور كما كان من قبل، للتحقق.</span>><br>
+        <input type='submit' value='حفظ'>
+        <p>تملك حساب؟ <a href="/ar/register/login/">تسجيل دخول</a> .</p>
+    </form>
+</div>
+{% endblock body %}

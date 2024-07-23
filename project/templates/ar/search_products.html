@@ -1,0 +1,25 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY{% endblock title %}
+
+{% block body %}
+<header>
+    <h1>ROSY Store</h1>
+    <button><a href="/ar/">كل المنتجات</a></button>
+</header>
+<div class='content'>
+    {% for item in items %}
+    <section>
+        <a href='/ar/{{item.id}}/'>
+            <img src="{{item.photo.url}}" />
+            <h3>{{item.title}}</h3>
+            <p>{{item.caption}}</p>
+            <h4>{{item.price}} IRQ</h4>
+        </a>
+        {% if item.sell %}
+        <strong>{{item.sell}}</strong>
+        {% endif %}
+    </section>
+    {% endfor %}
+</div>
+{% endblock body %}

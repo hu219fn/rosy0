@@ -1,0 +1,47 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY - Add Products{% endblock title %}
+
+{% block body %}
+
+{% if request.user.username == 'rosy' %}
+<form method='post' enctype="multipart/form-data">
+    <h1>اضافة المنتج</h1>
+    {% csrf_token %}
+    <label>العنوان<span style="color:red;font-weight:bold"> *</span>:</label>
+    <input type="text" name="title" maxlength="100" required="" id="id_title">
+    <label>الوصف:</label>
+    <textarea name="caption" cols="40" rows="10" maxlength="200" id="id_caption"></textarea>
+    <label>السعر<span style="color:red;font-weight:bold"> *</span>:</label>
+    <input type="number" name="price" required="" id="id_price">
+    <label>الخصم:</label>
+    <input type="text" name="sell" maxlength="30" id="id_sell">
+    <label>التصنيفات<span style="color:red;font-weight:bold"> *</span>:</label>
+    <select name="category" required="" id="id_category">
+        <option value="" selected="">---------</option>
+        <option value="Care Products">Care Products</option>
+        <option value="Girls' Baby Clothes">Girls' Baby Clothes</option>
+        <option value="Boys' Baby Clothes">Boys' Baby Clothes</option>
+        <option value="Women Clothes">Women Clothes</option>
+        <option value="Presents">Presents</option>
+        <option value="Makeup">Makeup</option>
+        <option value="Perfumes">Perfumes</option>
+        <option value="Men Clothes">Men Clothes</option>
+    </select>
+    <label>حساب المنتج<span style="color:red;font-weight:bold"> *</span>:</label>
+    <select name="account" required="" id="id_account">
+        <option value="" selected="">---------</option>
+        <option value="𝑹𝑶𝑺𝒀 𝑺𝑻𝑶𝑹𝑬">𝑹𝑶𝑺𝒀 𝑺𝑻𝑶𝑹𝑬</option>
+        <option value="𝑽𝑰𝑪𝑻𝑶𝑹𝑰𝑨 𝑺𝑻𝑶𝑹𝑬">𝑽𝑰𝑪𝑻𝑶𝑹𝑰𝑨 𝑺𝑻𝑶𝑹𝑬</option>
+    </select>
+    <label>الصورة<span style="color:red;font-weight:bold"> *</span>:</label>
+    <input type="file" name="photo" accept="image/*" required="" id="id_photo">
+    <input type='submit' value='حفظ'>
+</form>
+{% else %}
+<script>
+    location.href = '/ar/'
+</script>
+{% endif %}
+
+{% endblock body %}

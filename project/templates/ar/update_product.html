@@ -1,0 +1,20 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY - Edit Products{% endblock title %}
+
+{% block body %}
+
+{% if request.user.username == 'rosy' %}
+<form method='post' enctype="multipart/form-data">
+    <h1>تعديل المنتج</h1>
+    {% csrf_token %}
+    {{form}}
+    <input type='submit' value='حفظ'>
+</form>
+{% else %}
+<script>
+    location.href = '/ar/'
+</script>
+{% endif %}
+
+{% endblock body %}

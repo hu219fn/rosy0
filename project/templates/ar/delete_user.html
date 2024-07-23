@@ -1,0 +1,15 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY - Delete {{user.username}}{% endblock title %}
+
+{% block body %}
+
+<form method='POST' style='text-align:center;'>
+    {% csrf_token %}
+    <h1>"{{user.username}}" حذف</h1>
+    <p>هل أنت متأكد أنك تريد حذف هذا المستخدم؟</p>
+    <button><a href='/ar/management/'>تراجع</a></button>
+    <input type='submit' value='حذف'>
+</form>
+
+{% endblock body %}

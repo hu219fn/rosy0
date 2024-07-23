@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block title %}ROSY - {{item.title}}{{item.tilte}}{% endblock title %}
+
+{% block body %}
+
+<div>
+    <div class='detail'>
+        <div>
+            <img src='{{item.photo.url}}'>
+        </div>
+        <div>
+            <h1>{{item.title}}</h1>
+            {% if item.caption %}
+                <p>{{item.caption}}</p>
+            {% endif %}
+            <div class='price'>
+                <b >price:&nbsp;</b>
+                <h3>{{item.price|intcomma}} IQD</h3>
+                {% if item.sell %}
+                <strong>&nbsp;{{item.sell}}</strong>
+                {% endif %}
+            </div>
+            <form method='POST'>
+                {% csrf_token %}
+                <div>
+                    <b>count:&nbsp;</b>
+                    <div class='count'>
+                        <button type='button' onclick='minus()'><span class="material-symbols-rounded">remove</span></button>
+                        <input type='number' name='count' id='count' value='1'>
+                        <button type='button' onclick='plus()'><span class="material-symbols-rounded">add</span></button>
+                    </div>
+                </div>
+                {% if request.user.is_authenticated %}
+                <input type='submit' value='Add to Cart'>
+                {% else %}
+                <a class='a0' href='/register/login/'>Login to be able to add "{{item.title}}" to the cart</a>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

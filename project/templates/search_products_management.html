@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}ROSY - Management{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <header>
+        <h1>Management of Website</h1>
+        <button><a href='{% url "create-product" %}'>Add Products</a></button>
+    </header>
+    <ul>
+        <li><button type='button' id='productsBTN'>Products ({{items.count}})</button></li>
+        <li><button type='button' id='usersBTN'>User ({{users.count}})</button></li>
+    </ul>
+    <div id='products'>
+        <header>
+            <button id='categories'>Categories^</button>
+            <ul id='ul-categories'>
+                <li><a href='/management/'>All</a></li><hr>
+                <li><a href='/management/makeup/'>Makeup 💄</a></li><hr>
+                <li><a href='/management/care-products/'>Care Products 💅🏻</a></li><hr>
+                <li><a href='/management/perfumes/'>Perfumes 🌬️</a></li><hr>
+                <li><a href='/management/presents/'>Presents 🎁</a></li><hr>
+                <li><a href='/management/men-clothes/'>Men's Clothes 👨🏻</a></li><hr>
+                <li><a href='/management/women-clothes/'>Women's Clothes 👩🏻</a></li><hr>
+                <li><a href='/management/girls-clothes/'>Girls' Baby Clothes 👧🏻</a></li><hr>
+                <li><a href='/management/boys-clothes/'>Boys' Baby Clothes 👦🏻</a></li>
+            </ul>
+            <form method='get' class='formHeader' action="/management/products/">
+                <input type="text" name="search_products_management" placeholder="Search for Products...">
+                <button type="submit"><span class="material-symbols-outlined">search</span></button>
+            </form>
+        </header>
+        <div>
+            {% for item in items %}
+            <section>
+                <a href='/{{item.id}}/'>
+                    <div>
+                        <img src='{{item.photo.url}}'>
+                    </div>
+                    <div>
+                        <h1>{{item.title}} - ({{item.category}})</h1>
+                        <p>{{item.date}}</p>
+                    </div>
+                </a>
+                <ul>
+                    <li><a href='/management/edit/{{item.id}}/' style='color:#ceed67'>Edit</a></li>
+                    <li><a href='/management/delete/{{item.id}}/' style='color:#ed8667'>Delete</a></li>
+                    <li><a href='/management/orders/{{item.id}}/' style='color:#678bed'>Orders</a></li>
+                </ul>
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+    <div id='users'>
+        <header>
+            <div style='color:transparent'>.</div>
+            <form method='get' class='formHeader' action="/management/users/">
+                <input type="text" name="search_users_management" placeholder="Search for Users...">
+                <button type="submit"><span class="material-symbols-outlined">search</span></button>
+            </form>
+        </header>
+        <div>
+            {% for user in users %}
+            <section>
+                <a href='/management/user/{{user.id}}/'>
+                    <div>
+                        <h1>{{user.username}}</h1>
+                        <p>{{user.email}}</p>
+                    </div>
+                </a>
+                <button class='btnDel'><a href='/management/delete-user/{{user.id}}/'><span class="material-symbols-rounded">delete</span></a></button>
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

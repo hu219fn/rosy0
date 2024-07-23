@@ -1,0 +1,78 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY - Management{% endblock title %}
+
+{% block body %}
+<div class="container" style='direction:rtl'>
+    <header>
+        <h1>ادارة الموقع</h1>
+        <button><a href='{% url "create-product" %}'>اضافة منتجات</a></button>
+    </header>
+    <ul>
+        <li><button type='button' id='productsBTN1'>المنتجات ({{items.count}})</button></li>
+        <li><button type='button' id='usersBTN1'>المستخدمين ({{users.count}})</button></li>
+    </ul>
+    <div id='products1'>
+        <header>
+            <button id='categories1'>الاصناف^</button>
+            <ul id='ul-categories1' style='right:15%;left:auto'>
+                <li><a href='/ar/management/'>الكل</a></li><hr>
+                <li><a href='/ar/management/makeup/'>مكياج 💄</a></li><hr>
+                <li><a href='/ar/management/care-products/'>منتجات عناية 💅🏻</a></li><hr>
+                <li><a href='/ar/management/perfumes/'>عطور 🌬️</a></li><hr>
+                <li><a href='/ar/management/presents/'>هدايا 🎁</a></li><hr>
+                <li><a href='/ar/management/men-clothes/'>ملابس رجالية 👨🏻</a></li><hr>
+                <li><a href='/ar/management/women-clothes/'>ملابس نسائية 👩🏻</a></li><hr>
+                <li><a href='/ar/management/girls-clothes/'>ملابس بناتية 👧🏻</a></li><hr>
+                <li><a href='/ar/management/boys-clothes/'>ملابس ولادية 👦🏻</a></li>
+            </ul>
+            <form method='get' class='formHeader' action="/ar/management/products/">
+                <input type="text" name="search_products_management" placeholder="ابحث عن المنتجات...">
+                <button type="submit"><span class="material-symbols-outlined">search</span></button>
+            </form>
+        </header>
+        <div>
+            {% for item in items %}
+            <section>
+                <a href='/ar/{{item.id}}/'>
+                    <div>
+                        <img src='{{item.photo.url}}' style='margin: 0 0 0 15px'>
+                    </div>
+                    <div>
+                        <h1>{{item.title}} - ({{item.category}})</h1>
+                        <p>{{item.date}}</p>
+                    </div>
+                </a>
+                <ul>
+                    <li><a href='/ar/management/edit/{{item.id}}/' style='color:#ceed67'>تعديل</a></li>
+                    <li><a href='/ar/management/delete/{{item.id}}/' style='color:#ed8667'>حذف</a></li>
+                    <li><a href='/ar/management/orders/{{item.id}}/' style='color:#678bed'>طلبات</a></li>
+                </ul>
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+    <div id='users1'>
+        <header>
+            <div style='color:transparent'>.</div>
+            <form method='get' class='formHeader' action="/ar/management/users/">
+                <input type="text" name="search_users_management" placeholder="ابحث عن المستخدمين...">
+                <button type="submit"><span class="material-symbols-outlined">search</span></button>
+            </form>
+        </header>
+        <div>
+            {% for user in users %}
+            <section>
+                <a href='/ar/management/user/{{user.id}}/'>
+                    <div>
+                        <h1>{{user.username}}</h1>
+                        <p>{{user.email}}</p>
+                    </div>
+                </a>
+                <button class='btnDel'><a href='/ar/management/delete-user/{{user.id}}/'><span class="material-symbols-rounded">delete</span></a></button>
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

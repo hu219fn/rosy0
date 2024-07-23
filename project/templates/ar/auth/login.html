@@ -1,0 +1,22 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY - Login Page{% endblock title %}
+
+{% block body %}
+<div style='direction:rtl'>
+    <form method='post'>
+        <h1>تسجيل الدخول</h1>
+        {% csrf_token %}
+        {% for input in form %}
+        {% if input.label == 'Username' %}
+        <label>اسم المستخدم:</label>
+        {% else %}
+        <label>كلمة المرور:</label>
+        {% endif %}
+        {{input}}
+        {% endfor %}
+        <input type='submit' value='حفظ'>
+        <p>لا تملك حساب؟ <a href="/ar/register/">انشاء الحساب</a> .</p>
+    </form>
+</div>
+{% endblock body %}

@@ -1,0 +1,44 @@
+{% extends "ar/base.html" %}
+{% load humanize %}
+{% block title %}ROSY - {{item.title}}{{item.tilte}}{% endblock title %}
+
+{% block body %}
+
+<div>
+    <div class='detail'>
+        <div>
+            <img src='{{item.photo.url}}'>
+        </div>
+        <div>
+            <h1>{{item.title}}</h1>
+            {% if item.caption %}
+                <p>{{item.caption}}</p>
+            {% endif %}
+            <div class='price'>
+                <b>السعر:&nbsp;</b>
+                <h3>{{item.price}} IQD</h3>
+                {% if item.sell %}
+                <strong>&nbsp;{{item.sell}}</strong>
+                {% endif %}
+            </div>
+            <form method='post'>
+                {% csrf_token %}
+                <div>
+                    <b>العدد:&nbsp;</b>
+                    <div class='count'>
+                        <button type='button' onclick='minus()'><span class="material-symbols-rounded">remove</span></button>
+                        <input type='number' name='count' id='count1' value='1'>
+                        <button type='button' onclick='plus()'><span class="material-symbols-rounded">add</span></button>
+                    </div>
+                </div>
+                {% if request.user.is_authenticated %}
+                <input type='submit' value='اضافة الى السلة'>
+                {% else %}
+                <a href='/ar/register/login/'>الى السلة "{{item.title}}" سجل الدخول لتتمكن من اضافة</a>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

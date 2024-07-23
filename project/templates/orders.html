@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}ROSY - Orders of @ {{request.user}}{% endblock title %}
+
+{% block body %}
+<div>
+    <h1>Orders</h1>
+    <h1 class='h1A'><a href='https://www.instagram.com/rosy.store4?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' target='_blank'>@ 𝑹𝑶𝑺𝒀 𝑺𝑻𝑶𝑹𝑬</a></h1>
+    <div class='contentOrder'>
+        <div class='orders'>
+            {% if ordersROSY.count > 0 %}
+            {% for order in ordersROSY %}
+            <div class='order order1'>
+                <a href='/{{order.number}}/'>
+                    <h2>{{order.title}} - ({{order.count}})</h2>
+                    <p><time class='time1'>{{order.price}}</time> IRQ&#160;&#160;<span style='color: #ed8667;'>{{order.sell}}</span></p>
+                </a>
+                <button><a href='/order-delete/{{order.id}}/'><span class="material-symbols-rounded">delete</span></a></button>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h1>No orders</h1>
+            {% endif %}
+        </div>
+        <div class='total'>
+            <h4><span style='font-size:15px'>without discount, </span>Total:</h4>
+            <h1 id='total'></h1>
+            <button><a href='https://www.instagram.com/rosy.store4?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' target='_blank'>Go to Insta for Buy</a></button>
+        </div>
+    </div>
+    <hr style='border:1px solid #333;border-radius:5px'>
+    <h1 class='h1A'><a href='https://www.instagram.com/victo.riastore2?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' target='_blank'>@ 𝑽𝑰𝑪𝑻𝑶𝑹𝑰𝑨 𝑺𝑻𝑶𝑹𝑬</a></h1>
+    <div class='contentOrder'>
+        <div class='orders'>
+            {% if ordersVICTORIA.count > 0 %}
+            {% for order in ordersVICTORIA %}
+            <div class='order order2'>
+                <a href='/{{order.number}}/'>
+                    <h2>{{order.title}} - ({{order.count}})</h2>
+                    <p><time class='time2'>{{order.price}}</time> IRQ&#160;&#160;<span style='color: #ed8667;'>{{order.sell}}</span></p>
+                </a>
+                <button><a href='/order-delete/{{order.id}}/'><span class="material-symbols-rounded">delete</span></a></button>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h1>No orders</h1>
+            {% endif %}
+        </div>
+        <div class='total'>
+            <h4><span style='font-size:15px'>without discount, </span>Total:</h4>
+            <h1 id='total1'></h1>
+            <button><a href='https://www.instagram.com/victo.riastore2?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' target='_blank'>Go to Insta for Buy</a></button>
+        </div>
+    </div>
+</div>
+{% endblock body %}

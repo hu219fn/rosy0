@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}ROSY - Add Products{% endblock title %}
+
+{% block body %}
+
+{% if request.user.username == 'rosy' %}
+<form method='post' enctype="multipart/form-data">
+    <h1>Add Product</h1>
+    {% csrf_token %}
+    {% for input in form %}
+    {% if input.label == 'Caption' or input.label == 'Sell' %}
+    <label>{{input.label}}:</label>
+    {% else %}
+    <label>{{input.label}}<span style='color:red;font-weight:bold'> *</span>:</label>
+    {% endif %}
+    {{input}}
+    {% endfor %}
+    <input type='submit' value='Save'>
+</form>
+{% else %}
+<script>
+    location.href = '/'
+</script>
+{% endif %}
+
+{% endblock body %}

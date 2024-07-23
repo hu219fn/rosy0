@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}ROSY - Register{% endblock title %}
+
+{% block body %}
+<div>
+    <form method='post'>
+        <h1>Register Form</h1>
+        {% csrf_token %}
+        {{form}}
+        <input type='submit' value='Register'>
+        <p>Have account? <a href="{% url 'login' %}">Login</a> .</p>
+    </form>
+</div>
+{% endblock body %}

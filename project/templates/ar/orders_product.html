@@ -1,0 +1,30 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY - Orders of "{{product.title}}"{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <header>
+        <div class='div' style=''>
+            <button>
+                <a href="/ar/management"><span class="material-symbols-rounded">arrow_forward_ios</span></a>
+            </button>
+            <h1>"{{product.title}}" طلبات</h1>
+        </div>
+    </header>
+    <div>
+        <div>
+            {% for item in items %}
+            <section>
+                <a href=''>
+                    <div>
+                        <h1>@ {{item.user.username}} - ({{item.count}})</h1>
+                        <p>{{item.date}}</p>
+                    </div>
+                </a>
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

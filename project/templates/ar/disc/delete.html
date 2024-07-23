@@ -1,0 +1,20 @@
+{% extends "ar/base.html" %}
+
+{% block title %}ROSY - delete {{item.description}}{% endblock title %}
+
+{% block body %}
+
+{% if request.user.username == 'rosy' %}
+<form method='post' style='text-align:center;'>
+    {% csrf_token %}
+    <h1>هل أنت متأكد أنك تريد الحذف؟</h1>
+    <button><a href='/ar/discounts/'>تراجع</a></button>
+    <input type='submit' value='حذف'>
+</form>
+{% else %}
+<script>
+    location.href = '/ar/'
+</script>
+{% endif %}
+
+{% endblock body %}
